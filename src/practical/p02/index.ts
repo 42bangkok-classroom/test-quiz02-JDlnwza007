@@ -1,25 +1,25 @@
 import axios from 'axios';
 interface NewUserInput {
-  name?: string;
-  username?: string; 
-  email?: string; 
+  name?: string | null;
+  username?: string | null;
+  email?: string | null;
   address?: {
-    street?: string;
-    suite?: string;
-    city?: string;
-    zipcode?: string;
+    street?: string | null;
+    suite?: string | null;
+    city?: string | null;
+    zipcode?: string | null;
     geo?: {
-      lat?: string;
-      lng?: string;
-    };
-  };
-  phone?: string;
-  website?: string; 
-  company?: {   
-    name?: string;
-    catchPhrase?: string;
-    bs?: string;
-  };
+      lat?: string | null;
+      lng?: string | null;
+    } | null;
+  } | null;
+  phone?: string | null;
+  website?: string | null;
+  company?: {
+    name?: string | null;
+    catchPhrase?: string | null;
+    bs?: string | null;
+  } | null;
 }
 interface UserResult {
   id: number;
@@ -62,6 +62,7 @@ export async function addUser(newUserData: NewUserInput | null): Promise<UserRes
       address: u.address,
       phone: u.phone,
     }));
+
     if (!newUserData) {
       return formattedUsers; 
     }
